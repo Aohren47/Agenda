@@ -4,15 +4,18 @@
 
 #ifndef SKIPLIST_SANSJAD__CELL_H
 #define SKIPLIST_SANSJAD__CELL_H
+
 #include "stdio.h"
 #include "stdlib.h"
 
-typedef struct Cell{
+typedef struct Cell {
     int value;
     int nbLevel;
     struct Cell **nexts;
-}Cell;
+} Cell;
 
-Cell* createCell(int value, int nbLevel);
-void printCell(Cell* mycell);
+Cell *createCell(int value, int nbLevel);
+
+void printCell(Cell *mycell);
+
 #endif //SKIPLIST_SANSJAD__CELL_H

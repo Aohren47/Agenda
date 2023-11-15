@@ -3,26 +3,31 @@
 //
 
 #include "Cell.h"
-Cell* createCell(int value, int nbLevel){
-    Cell *mycell = (Cell*)malloc(sizeof(Cell));
-    mycell->value=value;
-    mycell->nbLevel=nbLevel;
-    mycell->nexts=NULL;
+
+Cell *createCell(int value, int nbLevel) {
+    Cell *mycell = (Cell *) malloc(sizeof(Cell));
+    mycell->value = value;
+    mycell->nbLevel = nbLevel;
+    mycell->nexts = (Cell **) malloc(sizeof(Cell*) * nbLevel);
+    for (int i = 0; i < nbLevel; i++) {
+        mycell->nexts[i] = NULL;
+    }
     return mycell;
 }
 
-void deleteCell(Cell* mycell){
+void deleteCell(Cell *mycell) {
     free(mycell);
 }
 
 void printCell(Cell* mycell){  // vérification pour la fonction cell
     printf("%d",mycell->value);
-    while (mycell->nexts!=NULL){
-        for (int i = 0; mycell->nexts[i] != NULL ; ++i) {
-            mycell=mycell->nexts[i];
-            printf("%d",mycell->value);//comme précedemment on a fait un ->next[i), mycell->value correspondra à celui-ci
+    for(int i=0;i<mycell->nbLevel;i++){
+        if (mycell->nexts[i]==NULL) {
+            printf("NULL");
         }
-        printf("\n");
     }
 }
+
+
+
 
