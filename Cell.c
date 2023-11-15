@@ -15,7 +15,7 @@ void deleteCell(Cell* mycell){
     free(mycell);
 }
 
-void printCell(Cell* mycell){
+void printCell(Cell* mycell){  // vérification pour la fonction cell
     printf("%d",mycell->value);
     while (mycell->nexts!=NULL){
         for (int i = 0; mycell->nexts[i] != NULL ; ++i) {

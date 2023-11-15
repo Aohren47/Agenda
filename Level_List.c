@@ -14,17 +14,28 @@ Level_list *createEmptyLevel_list(int maxLevel){
 }
 
 int isEmptyList(Level_list *myList) {
-    return myList == NULL;
-}
+    int res = 0;
+    for (int i = 0; i < myList->maxLevel; i++) {
+        if(myList->heads[i] == NULL){
+            res += 1;
+        }
+    }
+    if(res == myList->maxLevel){
+        return 1;
+    } else {
+        return 0;
+    }
+}//fonctionne
 
-void insertCellAtHead(Level_list *mylist, int value, int nbLevel) {
-    Cell *newcell = createCell(value, nbLevel);
+
+void insertCellAtHead(Level_list *mylist, Cell *newCell) {
     if (!isEmptyList(mylist)) {
         for (int i = 0; i < nbLevel; ++i) {
             newcell->nexts[i] = mylist->heads[i];
             mylist->heads[i] = newcell->nexts[i];
         }
     }
+    printf("Liste vide");
 }
 
 void printListLevel(Level_list *mylist, int nbLevel) {
@@ -51,4 +62,19 @@ void printList(Level_list *mylist){
 
 void deleteList(Level_list *mylist){
     free(mylist);
+}
+
+void printListLevel(Level_list *mylist, int Level) {
+    if (!isEmptyList(mylist)) {
+        Cell *temp = mylist->heads[Level];
+        printf("[list head_%d-]-->", Level);
+        while (temp->nexts[Level] != NULL){
+            printf("[ %d|@-]-->",temp->value);
+            temp=temp->nexts[Level];
+        }
+        printf("-->NULL");
+    } else{
+        printf("Liste vide");
+    }
+
 }
